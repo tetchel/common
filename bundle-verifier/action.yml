@@ -8,10 +8,9 @@ inputs:
     description: 'Output directory where your bundle is located.'
     required: true
     default: 'dist'
-  # use_git_diff:
-  #   description: 'Use git diff to check if the bundle is up-to-date. Set if outputting the diffed file contents is useful.'
-  #   required: false
-  #   default: 'false'
+  working_directory:
+    description: 'Working directory to use for relative path to bundle_file, and to run the bundle_command in.'
+    required: false
 
 runs:
   using: 'node12'

@@ -1,4 +1,4 @@
-name: Verify bundle-verifier
+name: CI for bundle-verifier
 on:
   push:
   pull_request:
@@ -6,7 +6,7 @@ on:
 env:
   BUNDLE_FILE: "dist/index.js"
   BUNDLE_COMMAND: "npm run bundle"
-  WORKDIR: "bundle-verifier"
+  WORKDIR: "./bundle-verifier"
 
 jobs:
   verify-self:
@@ -23,5 +23,6 @@ jobs:
     - name: Verify Latest Bundle
       uses: ./bundle-verifier
       with:
-        bundle_file: ${{ env.WORKDIR }}/${{ env.BUNDLE_FILE }}
-        bundle_command: cd ${{ env.WORKDIR }} && ${{ env.BUNDLE_COMMAND }}
+        bundle_file: ${{ env.BUNDLE_FILE }}
+        bundle_command: ${{ env.BUNDLE_COMMAND }}
+        working_directory: ${{ env.WORKDIR }}

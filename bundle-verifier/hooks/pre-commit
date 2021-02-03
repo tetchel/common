@@ -3,8 +3,10 @@
 echo "--- Pre-commit ---"
 
 set -ex
+# cd bundle-verifier/
 npm run bundle
 git add -v dist/
-set +x 
+# cd -
+set +x
 
 echo "Success"

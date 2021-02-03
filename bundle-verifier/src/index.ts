@@ -17,22 +17,47 @@ async function moveBundleFile(bundleFilePath: string): Promise<string> {
     return backupPath;
 }
 
-async function run() {
-    const bundleFile = ghCore.getInput(Inputs.BUNDLE_FILE, { required: true });
+function getInputs(): Readonly<{
+    bundleCmd: string,
+    bundleFile: string,
+    workDir: string | undefined,
+}> {
+    const workdirInput = ghCore.getInput(Inputs.WORKING_DIRECTORY);
+    const workDir: string | undefined = (workdirInput != null && workdirInput != "") ? workdirInput : undefined;
+    if (workDir) {
+        ghCore.info(`Working directory is ${workDir}`)
+    }
+
     const bundleCmd = ghCore.getInput(Inputs.BUNDLE_COMMAND, { required: true });
+    let bundleFileInput = ghCore.getInput(Inputs.BUNDLE_FILE, { required: true });
+
+    if (workDir) {
+        bundleFileInput = path.join(workDir, bundleFileInput);
+    }
+
+    const bundleFile = bundleFileInput;
+    // ghCore.info(`Bundle file is ${bundleFile}`);
+
+    return {
+        bundleCmd, bundleFile, workDir,
+    };
+}
+
+async function run() {
+    const { bundleCmd, bundleFile, workDir } = getInputs();
 
     const bundleFileHash = await hash(bundleFile);
     await moveBundleFile(bundleFile);
 
-    await ghExec.exec(bundleCmd);
+    await ghExec.exec(bundleCmd, undefined, { cwd: workDir });
     const newBundleFileHash = await hash(bundleFile);
 
     ghCore.info(`Comparing hashes...`);
     ghCore.info(`Committed hash: ${bundleFileHash}`);
     ghCore.info(`Generated hash: ${newBundleFileHash}`);
+
     if (bundleFileHash !== newBundleFileHash) {
-        ghCore.setFailed(`Hashes did not match. Run "${bundleCmd}" to update your bundle.`);
-        return;
+        throw new Error(`Hashes did not match. Run "${bundleCmd}" to update your bundle.`);
     }
     ghCore.info(`Hashes matched!`);
 }
