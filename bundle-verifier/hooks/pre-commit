@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+echo "--- Pre-commit ---"
+
+set -ex
+npm run bundle
+git add -v dist/
+set +x 
+
+echo "Success"

@@ -1,0 +1,25 @@
+{
+  "name": "@redhat-actions/eslint-config",
+  "version": "1.2.11",
+  "description": "ESLint config for GitHub Actions",
+  "keywords": [
+    "eslint",
+    "eslint-config",
+    "eslintrc"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:redhat-actions/planning.git"
+  },
+  "author": "tetchell@redhat.com",
+  "license": "MIT",
+  "dependencies": {
+    "eslint-config-airbnb-base": ">= 14",
+    "eslint-plugin-import": ">=2"
+  },
+  "peerDependencies": {
+    "eslint": ">= 7",
+    "@typescript-eslint/parser": ">= 4",
+    "@typescript-eslint/eslint-plugin": ">= 4"
+  }
+}

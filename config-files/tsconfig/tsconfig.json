@@ -1,0 +1,23 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "compilerOptions": {
+        /* Visit https://aka.ms/tsconfig.json to read more about this file */
+        /* From https://www.npmjs.com/package/@tsconfig/node12 */
+
+        "lib": [ "es2019", "es2020.promise", "es2020.bigint", "es2020.string" ],
+        "module": "commonjs",
+        "target": "es2019",
+        "sourceMap": true,
+
+        "strict": true,
+
+        "esModuleInterop": false,   // disabled because the actions packages do not work with this
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true
+    }
+}

@@ -1,0 +1,27 @@
+name: Verify bundle-verifier
+on:
+  push:
+  pull_request:
+
+env:
+  BUNDLE_FILE: "dist/index.js"
+  BUNDLE_COMMAND: "npm run bundle"
+  WORKDIR: "bundle-verifier"
+
+jobs:
+  verify-self:
+    name: Verify Bundle Verifier
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install
+      working-directory: ${{ env.WORKDIR }}
+      run: npm ci
+
+    - name: Verify Latest Bundle
+      uses: ./bundle-verifier
+      with:
+        bundle_file: ${{ env.WORKDIR }}/${{ env.BUNDLE_FILE }}
+        bundle_command: cd ${{ env.WORKDIR }} && ${{ env.BUNDLE_COMMAND }}

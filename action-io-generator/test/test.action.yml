@@ -1,0 +1,35 @@
+name: Test action.yml
+description: Not a real action!
+inputs:
+  foo:
+    required: true
+    description: This is the foo input.
+    default: foo-default
+  bar:
+    required: false
+    description: This is the bar input.
+  kebab-input:
+    required: false
+    description: Kebabs are delicious, but personally I prefer snakes.
+    default: Lamb
+  snake_input:
+    required: false
+    description: Snakes are less delicious, but easier to read.
+    default: Anaconda
+  multiline:
+    required: false
+    description: |
+      Here's an input with a long description.
+      It's even got multiple lines. I hope this doesn't mess up
+      the generator too badly.
+  folded:
+    required: false
+    description: >-
+      This is a multiline but folded string.
+      Its line break will be removed when the string is read from this file.
+outputs:
+  result:
+    description: The result output.
+runs:
+  using: node12
+  main: none

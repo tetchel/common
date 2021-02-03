@@ -1,0 +1,78 @@
+
+name: CI for action-io-generator
+on:
+  push:
+  pull_request:
+
+env:
+  PACKAGE_NAME: action-io-generator
+
+jobs:
+  detect_tag:
+    name: Detect tag
+    runs-on: ubuntu-20.04
+    outputs:
+      tag: ${{ steps.commit_data.outputs.tag }}
+      short_sha: ${{ steps.commit_data.outputs.short_sha }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: redhat-actions/common/commit-data@main
+        id: commit_data
+
+  compile_test:
+    name: Compile and test
+    runs-on: ubuntu-20.04
+    env:
+      TEST_FILE: test/generated/inputs-outputs.ts
+
+    defaults:
+      run:
+        working-directory: action-io-generator
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run compile
+      - run: npm run bundle
+
+      ##### End compile steps
+
+      - name: Prepare to test
+        run: rm -v ${{ env.TEST_FILE }}
+
+      - name: Test as library
+        run: npm run test
+
+      - name: Sniff test enum file
+        shell: bash
+        run: |
+          set -x
+          [[ -f ${{ env.TEST_FILE }} ]]
+          grep "export enum Inputs" ${{ env.TEST_FILE }}
+          grep "export enum Outputs" ${{ env.TEST_FILE }}
+          LINES=$(wc -l ${{ env.TEST_FILE }} | awk '{ print $1 }')
+          (( LINES > 30 ))
+
+      - name: Clean up
+        run: rm -v ${{ env.TEST_FILE }}
+
+      - name: Test as CLI
+        run: npm run test-cli
+
+      - name: Sniff test new enum file
+        shell: bash
+        run: |
+          set -x
+          [[ -f ${{ env.TEST_FILE }} ]]
+          grep "export enum Inputs" ${{ env.TEST_FILE }}
+          grep "export enum Outputs" ${{ env.TEST_FILE }}
+          LINES=$(wc -l ${{ env.TEST_FILE }} | awk '{ print $1 }')
+          (( LINES > 30 ))
+
+      - name: Clean up again
+        run: rm -v ${{ env.TEST_FILE }}
+
+      ##### End test steps
