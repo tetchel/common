@@ -1,6 +1,6 @@
 # Configs
 
-This directory contains the `tsconfig` and `eslintrc` we use for the Red Hat GitHub Actions. Include these config files when scaffolding a new action that uses TypeScript/JavaScript.
+This directory contains the TypeScript, ESLint and webpack configs we use for the Red Hat GitHub Actions. Include these config files when scaffolding a new action that uses TypeScript/JavaScript.
 
 Refer to the READMEs under the subdirectories for install instructions.
 

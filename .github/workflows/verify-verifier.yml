@@ -1,4 +1,4 @@
-name: CI for bundle-verifier
+name: bundle-verifier CI
 on:
   push:
   pull_request:
@@ -11,7 +11,7 @@ env:
 jobs:
   verify-self:
     name: Verify Bundle Verifier
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
     - uses: actions/checkout@v2

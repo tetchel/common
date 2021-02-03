@@ -1,5 +1,10 @@
 # Commit Data Action
 
+[![commit-data CI](https://github.com/redhat-actions/common/workflows/commit-data%20CI/badge.svg)](https://github.com/redhat-actions/common/actions)
+
+[![Tag](https://img.shields.io/github/v/tag/redhat-actions/common)](https://github.com/redhat-actions/common/tags)
+[![License](https://img.shields.io/github/license/redhat-actions/common)](./LICENSE)
+
 This is a small action which captures some logic I'd find myself needing in lots of different workflows.
 
 Firstly, I wanted to retrieve the tag corresponding to the commit for the current workflow, and perform some action if this is a "tag workflow".

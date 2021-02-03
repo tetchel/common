@@ -26,8 +26,8 @@
     "do-publish": "npm run package && npm publish dist/ --access=public"
   },
   "devDependencies": {
-    "@redhat-actions/eslint-config": "^1.2.3",
-    "@redhat-actions/tsconfig": "^1.1.0",
+    "@redhat-actions/eslint-config": "^1.2.11",
+    "@redhat-actions/tsconfig": "^1.1.1",
     "@types/js-yaml": "^3.12.5",
     "@types/minimist": "^1.2.1",
     "@types/node": "12",

@@ -1,10 +1,10 @@
-## action-io-generator
+## GitHub Action Input-Output Generator
 
-[![CI](https://github.com/tetchel/action-io-generator/workflows/CI/badge.svg)](https://github.com/tetchel/action-io-generator/actions?query=workflow%3ACI)
+[![action-io-generator CI](https://github.com/redhat-actions/common/workflows/action-io-generator%20CI/badge.svg)](https://github.com/redhat-actions/common/actions)
 
 [![npm badge](https://img.shields.io/npm/v/@redhat-actions/action-io-generator)](https://www.npmjs.com/package/@redhat-actions/action-io-generator)
-[![tag badge](https://img.shields.io/github/v/tag/tetchel/action-io-generator)](https://github.com/tetchel/action-io-generator/tags)
-[![license badge](https://img.shields.io/github/license/tetchel/action-io-generator)](./LICENSE)
+[![Tag](https://img.shields.io/github/v/tag/redhat-actions/common)](https://github.com/redhat-actions/common/tags)
+[![License](https://img.shields.io/github/license/redhat-actions/common)](./LICENSE)
 
 This is a utility to generate JavaScript/TypeScript enums from an `action.yml` file. It can be invoked as a command-line tool or programmatically.
 

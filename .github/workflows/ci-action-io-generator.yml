@@ -1,11 +1,8 @@
 
-name: CI for action-io-generator
+name: action-io-generator CI
 on:
   push:
   pull_request:
-
-env:
-  PACKAGE_NAME: action-io-generator
 
 jobs:
   detect_tag:

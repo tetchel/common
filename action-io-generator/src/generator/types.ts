@@ -2,11 +2,11 @@ export type InputOrOutput = Readonly<{
     description: string;
     required: boolean;
     default?: string;
-}>
+}>;
 
 export type InputsOutputs = Readonly<{
     [key: string]: InputOrOutput;
-}>
+}>;
 
 export type InputOutputEntries = [string, InputOrOutput][];
 
@@ -19,4 +19,4 @@ export type ActionYml = Readonly<{
         using: string;
         main: string;
     };
-}>
+}>;
