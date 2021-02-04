@@ -16,10 +16,9 @@
   "homepage": "https://github.com/tetchel/action-io-generator#readme",
   "scripts": {
     "compile": "tsc -p .",
-    "bundle": "npx webpack --mode=production && cp -v out/index.d.ts bin.js dist/",
+    "bundle": "npx webpack --mode=production && cp -v bin.js dist/",
     "clean": "rm -rf out/ dist/",
     "lint": "eslint . --max-warnings=0",
-    "test": "ts-node test/test.ts",
     "test-cli": "node ./dist/index.js -a test/test.action.yml -o test/generated/inputs-outputs.ts",
     "package": "npm run clean && npm run compile && npm run bundle && rm -rv dist/generator/ dist/util/ && cp -v package*.json README.md LICENSE bin.js dist/",
     "publish-dry": "npm run package && npm publish dist/ --access=public --dry-run",

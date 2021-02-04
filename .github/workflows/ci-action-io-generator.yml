@@ -37,23 +37,7 @@ jobs:
       - name: Prepare to test
         run: rm -v ${{ env.TEST_FILE }}
 
-      - name: Test as library
-        run: npm run test
-
-      - name: Sniff test enum file
-        shell: bash
-        run: |
-          set -x
-          [[ -f ${{ env.TEST_FILE }} ]]
-          grep "export enum Inputs" ${{ env.TEST_FILE }}
-          grep "export enum Outputs" ${{ env.TEST_FILE }}
-          LINES=$(wc -l ${{ env.TEST_FILE }} | awk '{ print $1 }')
-          (( LINES > 30 ))
-
-      - name: Clean up
-        run: rm -v ${{ env.TEST_FILE }}
-
-      - name: Test as CLI
+      - name: Test action-io-generator CLI
         run: npm run test-cli
 
       - name: Sniff test new enum file

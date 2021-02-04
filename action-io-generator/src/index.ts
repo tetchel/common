@@ -4,10 +4,6 @@ import * as minimist from "minimist";
 import * as logger from "./util/logger";
 import generator from "./generator/generator";
 
-export async function generate(actionYmlFile: string, outFile: string, watch: boolean): Promise<void> {
-    return generator(actionYmlFile, outFile, watch);
-}
-
 export async function cli(): Promise<void> {
     const minimistOptions: minimist.Opts = {
         alias: {
@@ -41,17 +37,11 @@ export async function cli(): Promise<void> {
         // but still continue
     }
 
-    await generate(actionYmlFile, outFile, args.watch);
+    await generator(actionYmlFile, outFile, args.watch);
 }
 
-if (require.main === module) {
-    cli()
-        .catch((err) => {
-            console.error(err);
-            process.exit(1);
-        });
-}
-else {
-    logger.setSilent(true);
-}
-// else, this file was require'd and we leave it to the client to call generate().
+cli()
+    .catch((err) => {
+        console.error(err);
+        process.exit(1);
+    });
