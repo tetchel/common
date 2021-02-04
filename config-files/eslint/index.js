@@ -1,20 +1,15 @@
-// eslint-disable-next-line no-undef
 module.exports = {
-    ignorePatterns: [
-        "node_modules/",
-        "dist/",
-        "out/",
-        "lib/",
-        "**/webpack.config.js",
-    ],
     env: {
         browser: false,
         es2021: true,
     },
     ignorePatterns: [
         ".eslintrc.js",
+        "webpack.config.js",
+        "node_modules/",
         "dist/",
         "out/",
+        "lib/",
     ],
     extends: [
         // https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base
