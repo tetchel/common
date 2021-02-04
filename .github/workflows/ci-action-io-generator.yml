@@ -4,28 +4,25 @@ on:
   push:
   pull_request:
 
+defaults:
+  run:
+    working-directory: action-io-generator
+
 jobs:
-  detect_tag:
-    name: Detect tag
+  lint:
+    name: Run ESLint
     runs-on: ubuntu-20.04
-    outputs:
-      tag: ${{ steps.commit_data.outputs.tag }}
-      short_sha: ${{ steps.commit_data.outputs.short_sha }}
 
     steps:
       - uses: actions/checkout@v2
-      - uses: redhat-actions/common/commit-data@main
-        id: commit_data
+      - run: npm ci
+      - run: npm run lint
 
   compile_test:
     name: Compile and test
     runs-on: ubuntu-20.04
     env:
       TEST_FILE: test/generated/inputs-outputs.ts
-
-    defaults:
-      run:
-        working-directory: action-io-generator
 
     steps:
       - uses: actions/checkout@v2
