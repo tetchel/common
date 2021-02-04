@@ -10,7 +10,7 @@ On those projects, I've migrated to `webpack`, so the config is stored here.
 
 Install peer dependencies:
 ```sh
-npm i -D webpack webpack-cli ts-loader terser-webpack-plugin
+npm i -D webpack webpack-cli ts-loader @types/terser-webpack-plugin
 ```
 
 Copy the [webpack.config.js](./webpack.config.js) into your project.
