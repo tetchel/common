@@ -27,6 +27,7 @@
   "devDependencies": {
     "@redhat-actions/eslint-config": "^1.2.13",
     "@redhat-actions/tsconfig": "^1.1.1",
+    "@redhat-actions/webpack-config": "^1.0.0",
     "@types/js-yaml": "^3.12.5",
     "@types/minimist": "^1.2.1",
     "@types/node": "12",
