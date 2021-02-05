@@ -5,9 +5,16 @@
 const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
 
-module.exports = () => {
+/**
+ * @param {string} dirname
+ */
+function getConfig(dirname) {
     const entry = "./src/index.ts";     // https://webpack.js.org/configuration/entry-context/
     const devtool = "source-map";
+    const outputDir = path.resolve(dirname, "dist");
+    const outputFile = "index.js";
+    console.log(`Outputting bundle to ${outputDir}/${outputFile}`);
+
 
     /**@type {import("webpack").Configuration}*/
     const config = {
@@ -16,21 +23,21 @@ module.exports = () => {
         target: "node",
         entry,
         output: { // the output bundle is stored in the "dist" folder (check package.json), 📖 -> https://webpack.js.org/configuration/output/
-            path: path.resolve(__dirname, "dist"),
-            filename: "index.js",
+            path: outputDir,
+            filename: outputFile,
             libraryTarget: "commonjs2",
             devtoolModuleFilenameTemplate: "../[resource-path]",
         },
         externals: {},
         resolve: { // support reading TypeScript and JavaScript files, 📖 -> https://github.com/TypeStrong/ts-loader
-            extensions: [".ts", ".js" ]
+            extensions: [ ".ts", ".js", ]
         },
         module: {
             rules: [{
                 test: /\.tsx?$/,
                 exclude: /node_modules/,
-                use: "ts-loader"
-            }
+                use: "ts-loader",
+            },
         ]},
         optimization: {
             minimize: true,
@@ -51,3 +58,5 @@ module.exports = () => {
 
     return config;
 };
+
+module.exports = getConfig;

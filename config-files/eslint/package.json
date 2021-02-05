@@ -1,6 +1,6 @@
 {
   "name": "@redhat-actions/eslint-config",
-  "version": "1.2.11",
+  "version": "1.2.13",
   "description": "ESLint config for GitHub Actions",
   "keywords": [
     "eslint",
