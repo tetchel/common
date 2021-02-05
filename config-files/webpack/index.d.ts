@@ -1,3 +1,3 @@
 import { Configuration } from "webpack";
 
-export = () => Configuration;
+export = (dirname: string) => Configuration;

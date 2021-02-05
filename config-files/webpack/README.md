@@ -23,7 +23,7 @@ Create `webpack.config.js` with the following content:
 ```js
 //@ts-check
 
-module.exports = require("@redhat-actions/webpack-config");
+module.exports = require("@redhat-actions/webpack-config")(__dirname);
 ```
 
 If you need to modify/override the config, you can set `module.exports` to a function instead, modify the `require`'d config as necessary, and return the config.
