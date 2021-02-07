@@ -22,6 +22,7 @@ See [this repository's workflow](./.github/workflows/verify-verifier.yml) for an
 | ---   | --- |
 | `bundle_file` | Path, relative to the repository root, to your bundled js file. Only one regular file is supported. <br><br>For this repository, it is [`dist/index.js`](./dist/index.js). |
 | `bundle_command`| Command to run to generate your bundle. A `package.json` script is recommended, which can in turn execute your bundler such as `webpack` or `ncc`.<br><br>For this repository, it is [`npm run bundle`](./package.json#L8). |
+| `working_directory` | Working directory to use for relative path to `bundle_file`, and to run the `bundle_command` in.<br><br>For this repository, it is [`bundle-verifier`](./bundle-verifier). |
 
 ## Hooks
 To ensure bundle consistency, this repository uses git pre-commit hooks.
