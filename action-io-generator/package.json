@@ -1,6 +1,6 @@
 {
   "name": "@redhat-actions/action-io-generator",
-  "version": "1.3.0",
+  "version": "1.5.0",
   "description": "Automatically generate enums for your JavaScript action's inputs and outputs",
   "main": "dist/index.js",
   "repository": {
@@ -19,8 +19,8 @@
     "bundle": "npx webpack --mode=production && cp -v bin.js dist/",
     "clean": "rm -rf out/ dist/",
     "lint": "eslint . --max-warnings=0",
-    "test-cli": "node ./dist/index.js -a test/test.action.yml -o test/generated/inputs-outputs.ts",
-    "package": "npm run clean && npm run compile && npm run bundle && rm -rv dist/generator/ dist/util/ && cp -v package*.json README.md LICENSE bin.js dist/",
+    "test-cli": "node ./dist/bin.js -a test/test.action.yml -o test/generated/inputs-outputs.ts",
+    "package": "npm run clean && npm run compile && npm run bundle && cp -v package*.json README.md LICENSE bin.js dist/",
     "publish-dry": "npm run package && npm publish dist/ --access=public --dry-run",
     "do-publish": "npm run package && npm publish dist/ --access=public"
   },

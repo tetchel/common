@@ -39,9 +39,3 @@ export async function cli(): Promise<void> {
 
     await generator(actionYmlFile, outFile, args.watch);
 }
-
-cli()
-    .catch((err) => {
-        console.error(err);
-        process.exit(1);
-    });
