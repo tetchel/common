@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -e 
-set -o pipefail 
+set -o pipefail
 
 # Define a timestamp function
 timestamp() {
@@ -12,9 +12,12 @@ npm ci
 file_name="action-generated-ins-outs-$(timestamp).ts"
 echo "Generating inputs and outputs enum in $file_name"
 
-npx action-io-generator --outFile=$file_name
+set -x
 
+npx action-io-generator --outFile=$file_name
 git --no-pager diff --no-index --exit-code $INPUT_IO_FILE $file_name
+
+set +x
 
 if [[ $? -eq 0 ]]; then
     echo "✅ Inputs and Outputs are configured correctly!"
